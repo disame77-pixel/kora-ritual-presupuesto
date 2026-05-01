@@ -227,6 +227,24 @@
       font-family: Arial, sans-serif;
     }
     .qty-input:focus { border-color: var(--accent-dim); }
+    .qty-select {
+      width: 72px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 6px 8px;
+      font-size: 0.88rem;
+      border-radius: 3px;
+      outline: none;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .qty-select:focus { border-color: var(--accent-dim); }
+    .ninguno-lbl { color: var(--accent-dim); }
     .fix-check {
       width: 17px; height: 17px;
       accent-color: var(--accent);
@@ -491,69 +509,80 @@
     <div class="step-lbl">Paso 2 de 6</div>
     <div class="step-title">Servicio base</div>
 
+    <p class="hint" style="margin-bottom:22px;">Puedes combinar servicios de categorías distintas. Dentro de cada categoría, solo uno.</p>
+
     <!-- Manicure -->
-    <div class="grp">
+    <div class="grp" data-cat="mani">
       <div class="grp-title">Manicure</div>
-      <div class="row-opt" onclick="pickSvc(this,'Dry manicure (manicura rusa)',35000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Dry manicure (manicura rusa)</span><span class="opt-price">$35.000</span>
+      <div class="row-opt sel" onclick="pickSvc(this,'mani','',0)">
+        <input type="radio" name="svc-mani" checked /><span class="opt-lbl ninguno-lbl">Ninguno</span><span class="opt-price">—</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Manicure tradicional',40000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Manicure tradicional</span><span class="opt-price">$40.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'mani','Dry manicure (manicura rusa)',35000)">
+        <input type="radio" name="svc-mani" /><span class="opt-lbl">Dry manicure (manicura rusa)</span><span class="opt-price">$35.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Manicure semipermanente',50000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Manicure semipermanente</span><span class="opt-price">$50.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'mani','Manicure tradicional',40000)">
+        <input type="radio" name="svc-mani" /><span class="opt-lbl">Manicure tradicional</span><span class="opt-price">$40.000</span>
+      </div>
+      <div class="row-opt" onclick="pickSvc(this,'mani','Manicure semipermanente',50000)">
+        <input type="radio" name="svc-mani" /><span class="opt-lbl">Manicure semipermanente</span><span class="opt-price">$50.000</span>
       </div>
     </div>
 
     <!-- Sistemas -->
-    <div class="grp">
+    <div class="grp" data-cat="sist">
       <div class="grp-title">Sistemas — preparación dry incluida</div>
-      <div class="row-opt" onclick="pickSvc(this,'Soft gel',100000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Soft gel</span><span class="opt-price">$100.000</span>
+      <div class="row-opt sel" onclick="pickSvc(this,'sist','',0)">
+        <input type="radio" name="svc-sist" checked /><span class="opt-lbl ninguno-lbl">Ninguno</span><span class="opt-price">—</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Forrado acrílico uña natural',90000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Forrado acrílico uña natural</span><span class="opt-price">$90.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Soft gel',100000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Soft gel</span><span class="opt-price">$100.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Forrado polygel uña natural',100000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Forrado polygel uña natural</span><span class="opt-price">$100.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Forrado acrílico uña natural',90000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Forrado acrílico uña natural</span><span class="opt-price">$90.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Builder gel',90000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Builder gel</span><span class="opt-price">$90.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Forrado polygel uña natural',100000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Forrado polygel uña natural</span><span class="opt-price">$100.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Acrílico #1',110000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Acrílico #1</span><span class="opt-price">$110.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Builder gel',90000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Builder gel</span><span class="opt-price">$90.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Acrílico #2',120000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Acrílico #2</span><span class="opt-price">$120.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Acrílico #1',110000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Acrílico #1</span><span class="opt-price">$110.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Acrílico #3',130000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Acrílico #3</span><span class="opt-price">$130.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Acrílico #2',120000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Acrílico #2</span><span class="opt-price">$120.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Acrílico #4',140000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Acrílico #4</span><span class="opt-price">$140.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Acrílico #3',130000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Acrílico #3</span><span class="opt-price">$130.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Polygel #1',120000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Polygel #1</span><span class="opt-price">$120.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Acrílico #4',140000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Acrílico #4</span><span class="opt-price">$140.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Polygel #3',140000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Polygel #3</span><span class="opt-price">$140.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Polygel #1',120000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Polygel #1</span><span class="opt-price">$120.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Dual system',130000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Dual system</span><span class="opt-price">$130.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Polygel #3',140000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Polygel #3</span><span class="opt-price">$140.000</span>
+      </div>
+      <div class="row-opt" onclick="pickSvc(this,'sist','Dual system',130000)">
+        <input type="radio" name="svc-sist" /><span class="opt-lbl">Dual system</span><span class="opt-price">$130.000</span>
       </div>
     </div>
 
     <!-- Pedicure -->
-    <div class="grp">
+    <div class="grp" data-cat="pedi">
       <div class="grp-title">Pedicure</div>
-      <div class="row-opt" onclick="pickSvc(this,'Dry pedicure',35000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Dry pedicure</span><span class="opt-price">$35.000</span>
+      <div class="row-opt sel" onclick="pickSvc(this,'pedi','',0)">
+        <input type="radio" name="svc-pedi" checked /><span class="opt-lbl ninguno-lbl">Ninguno</span><span class="opt-price">—</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Pedicure tradicional',35000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Pedicure tradicional</span><span class="opt-price">$35.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'pedi','Dry pedicure',35000)">
+        <input type="radio" name="svc-pedi" /><span class="opt-lbl">Dry pedicure</span><span class="opt-price">$35.000</span>
       </div>
-      <div class="row-opt" onclick="pickSvc(this,'Pedicure semipermanente',50000)">
-        <input type="radio" name="svc" /><span class="opt-lbl">Pedicure semipermanente</span><span class="opt-price">$50.000</span>
+      <div class="row-opt" onclick="pickSvc(this,'pedi','Pedicure tradicional',35000)">
+        <input type="radio" name="svc-pedi" /><span class="opt-lbl">Pedicure tradicional</span><span class="opt-price">$35.000</span>
+      </div>
+      <div class="row-opt" onclick="pickSvc(this,'pedi','Pedicure semipermanente',50000)">
+        <input type="radio" name="svc-pedi" /><span class="opt-lbl">Pedicure semipermanente</span><span class="opt-price">$50.000</span>
       </div>
     </div>
 
@@ -605,38 +634,32 @@
     <div class="deco-row">
       <span class="deco-lbl">Efecto espejo plateado</span>
       <span class="deco-uprice">$3.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Efecto espejo plateado" data-price="3000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Efecto espejo plateado" data-price="3000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Efecto espejo dorado</span>
       <span class="deco-uprice">$3.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Efecto espejo dorado" data-price="3000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Efecto espejo dorado" data-price="3000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Cat eye</span>
       <span class="deco-uprice">$3.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Cat eye" data-price="3000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Cat eye" data-price="3000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Blooming</span>
       <span class="deco-uprice">$3.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Blooming" data-price="3000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Blooming" data-price="3000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Aurora / Aura</span>
       <span class="deco-uprice">$3.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Aurora/Aura" data-price="3000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Aurora/Aura" data-price="3000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">French especial con delineado</span>
       <span class="deco-uprice">$5.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="French especial con delineado" data-price="5000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="French especial con delineado" data-price="5000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
 
     <!-- Nail Art -->
@@ -644,20 +667,17 @@
     <div class="deco-row">
       <span class="deco-lbl">Nail art floral pintado</span>
       <span class="deco-uprice">$8.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Nail art floral pintado" data-price="8000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Nail art floral pintado" data-price="8000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Nail art mármol con foil</span>
       <span class="deco-uprice">$8.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Nail art mármol con foil" data-price="8000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Nail art mármol con foil" data-price="8000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Diseño libre con pincel</span>
       <span class="deco-uprice">$8.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Diseño libre con pincel" data-price="8000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Diseño libre con pincel" data-price="8000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
 
     <!-- 3D -->
@@ -665,20 +685,17 @@
     <div class="deco-row">
       <span class="deco-lbl">3D básico <span style="color:var(--accent-dim);font-size:.8em">(punto, flor simple)</span></span>
       <span class="deco-uprice">$8.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="3D básico" data-price="8000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="3D básico" data-price="8000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">3D intermedio <span style="color:var(--accent-dim);font-size:.8em">(frutas, flores, objetos)</span></span>
       <span class="deco-uprice">$15.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="3D intermedio" data-price="15000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="3D intermedio" data-price="15000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">3D premium <span style="color:var(--accent-dim);font-size:.8em">(personajes, figuras grandes)</span></span>
       <span class="deco-uprice">$25.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="3D premium" data-price="25000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="3D premium" data-price="25000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
 
     <!-- Adicionales -->
@@ -686,14 +703,12 @@
     <div class="deco-row">
       <span class="deco-lbl">Strass / piedras</span>
       <span class="deco-uprice">$2.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Strass / piedras" data-price="2000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Strass / piedras" data-price="2000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row">
       <span class="deco-lbl">Uña adicional decorada</span>
       <span class="deco-uprice">$3.000/uña</span>
-      <input class="qty-input" type="number" min="0" max="10" value="0"
-             data-label="Uña adicional decorada" data-price="3000" oninput="clampQty(this)" />
+      <select class="qty-select" data-label="Uña adicional decorada" data-price="3000" onchange="handleDecoChange(this)"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select>
     </div>
     <div class="deco-row" style="cursor:pointer;" onclick="document.getElementById('chkPartida').click()">
       <span class="deco-lbl">Uña partida / reparación</span>
@@ -765,7 +780,7 @@
 /* ── State ─────────────────────────────────────────────────── */
 const S = {
   name: '', date: '', modality: '',
-  svc: { label: '', price: 0 },
+  svcs: [],          // [{ cat, label, price }]
   spa: { label: 'Sin spa', price: 0 },
   decos: [],
   unaPartida: false,
